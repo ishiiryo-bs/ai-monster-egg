@@ -14,7 +14,7 @@ const STAT_LABELS: Record<string, string> = {
   wisdom: '知恵',
   technique: '技巧',
   resilience: '耐性',
-  insight: '洞察',
+  insight: 'ひらめき',
   discipline: '規律',
   vitality: '活力',
 };
@@ -55,6 +55,7 @@ const QUESTIONS: Array<{ key: QuizKey; text: string; options: Array<{ value: str
       { value: 'code', label: 'コードを書く・直す' },
       { value: 'writing', label: '文章を書く・整える' },
       { value: 'learning', label: '調べる・学ぶ' },
+      { value: 'starter', label: 'まだあまり使っていない(これから!)' },
     ],
   },
   {

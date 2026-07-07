@@ -4,7 +4,7 @@ export interface QuizAnswers {
   colorTone: 'warm' | 'cool' | 'pastel' | 'vivid';
   form: 'round' | 'sharp';
   workStyle: 'steady' | 'burst';
-  aiUse: 'code' | 'writing' | 'learning';
+  aiUse: 'code' | 'writing' | 'learning' | 'starter';
   creature: 'bird' | 'beast' | 'aquatic' | 'mythic';
 }
 
@@ -136,6 +136,7 @@ export function initialStatBonus(answers: QuizAnswers): { stat: StatKey; xp: num
     code: 'technique',
     writing: 'wisdom',
     learning: 'insight',
+    starter: 'vitality',
   };
   return { stat: map[answers.aiUse], xp: 10 };
 }

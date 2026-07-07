@@ -156,3 +156,40 @@ a.option {
 svg {
   image-rendering: pixelated;
 }
+
+.code-box {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 214, 102, 0.45);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.code-label {
+  color: #b09bdd;
+  font-size: 12px;
+}
+
+.code-value {
+  font-family: ui-monospace, 'SF Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffd666;
+  user-select: all;
+}
+
+.code-copy {
+  padding: 8px 18px;
+  font-size: 13px;
+}
+
+.code-note {
+  color: #b09bdd;
+  font-size: 11px;
+  line-height: 1.6;
+}

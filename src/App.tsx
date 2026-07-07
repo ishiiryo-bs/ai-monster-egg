@@ -8,6 +8,7 @@ import {
   type QuizAnswers,
 } from './genome';
 import { EggSprite } from './EggSprite';
+import { encodeEggCode } from './eggCode';
 import './App.css';
 
 const STAT_LABELS: Record<string, string> = {
@@ -109,6 +110,7 @@ export default function App() {
   const [qIndex, setQIndex] = useState(0);
   const [answers, setAnswers] = useState<Partial<QuizAnswers>>({});
   const [chosen, setChosen] = useState<Genome | null>(null);
+  const [copied, setCopied] = useState(false);
   const baseSeed = useMemo(() => (Date.now() ^ (Math.random() * 0xffffffff)) >>> 0, []);
 
   const demoEggs = useMemo(() => {
@@ -139,6 +141,7 @@ export default function App() {
     setQIndex(0);
     setAnswers({});
     setChosen(null);
+    setCopied(false);
   };
 
   if (step === 'landing') {
@@ -217,6 +220,17 @@ export default function App() {
   const typeLabel = typeLabelOf(answers as QuizAnswers);
   const shareText = `私のAI活用タイプは【${typeLabel}】。世界に一つの卵が生まれた🥚 #AIMonster`;
   const shareUrl = 'https://ishiiryo-bs.github.io/ai-monster-egg/';
+  const eggCode = chosen ? encodeEggCode(answers as QuizAnswers, chosen.seed) : '';
+
+  const copyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(eggCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // クリップボード不可の環境でもコードは画面に表示されている
+    }
+  };
 
   return (
     <main className="page">
@@ -224,6 +238,14 @@ export default function App() {
       <h1>{typeLabel}</h1>
       <div className="result-egg">{chosen && <EggSprite genome={chosen} cell={16} />}</div>
       <p className="sub">この柄は、あなたの回答から生まれた世界に一つの模様です</p>
+      <div className="code-box">
+        <p className="code-label">引きつぎコード</p>
+        <p className="code-value">{eggCode}</p>
+        <button className="option code-copy" onClick={() => void copyCode()}>
+          {copied ? 'コピーしました ✓' : 'コードをコピー'}
+        </button>
+        <p className="code-note">macOS版アプリで入力すると、この卵をそのまま育てられます</p>
+      </div>
       <div className="result-actions">
         <a
           className="primary big"

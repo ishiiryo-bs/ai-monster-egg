@@ -4,6 +4,7 @@ import {
   generateGenome,
   initialStatBonus,
   MOTIF_LABELS,
+  paletteFromGenome,
   type Genome,
   type QuizAnswers,
 } from './genome';
@@ -218,9 +219,10 @@ export default function App() {
   }
 
   const typeLabel = typeLabelOf(answers as QuizAnswers);
-  const shareText = `私のAI活用タイプは【${typeLabel}】。世界に一つの卵が生まれた🥚 #AIMonster`;
+  const shareText = `私のAI活用タイプは【${typeLabel}】。世界に一つの卵が生まれた🥚 macOS版アプリの公開告知は @icryodev から #AIMonster`;
   const shareUrl = 'https://icryodev.github.io/ai-monster-egg/';
   const eggCode = chosen ? encodeEggCode(answers as QuizAnswers, chosen.seed) : '';
+  const glowColor = chosen ? paletteFromGenome(chosen).inner : 'transparent';
 
   const copyCode = async () => {
     try {
@@ -236,31 +238,47 @@ export default function App() {
     <main className="page">
       <p className="sub">あなたは</p>
       <h1>{typeLabel}</h1>
-      <div className="result-egg">{chosen && <EggSprite genome={chosen} cell={16} />}</div>
-      <p className="sub">この柄は、あなたの回答から生まれた世界に一つの模様です</p>
+      {/* 胎動: 数秒に一度、底を支点に左右へがたっと揺れ、直後に殻ごしに内側の色が透ける。
+          輪郭は見せない(姿はアプリで孵るまでのお楽しみ — 形を約束しない) */}
+      <div className="result-egg egg-alive">
+        {chosen && (
+          <>
+            <span className="egg-glow" style={{ background: glowColor }} aria-hidden="true" />
+            <EggSprite genome={chosen} cell={16} />
+          </>
+        )}
+      </div>
+      <p className="stir-note">……いま、中で動いた</p>
+      <p className="sub">
+        この柄は、あなたの回答から生まれた世界に一つの模様です。
+        <br />
+        何が生まれるかは、孵化させるまでわかりません
+      </p>
+      <div className="result-actions">
+        <a className="primary big" href="https://github.com/icryodev/ai-monster-egg" target="_blank" rel="noreferrer">
+          孵化のようすを見る — macOS版(まもなく)
+        </a>
+      </div>
       <div className="code-box">
-        <p className="code-label">引きつぎコード</p>
+        <p className="code-label">公開までの引換券 — 引きつぎコード</p>
         <p className="code-value">{eggCode}</p>
         <button className="option code-copy" onClick={() => void copyCode()}>
           {copied ? 'コピーしました ✓' : 'コードをコピー'}
         </button>
-        <p className="code-note">macOS版アプリで入力すると、この卵をそのまま育てられます</p>
+        <p className="code-note">macOS版が公開されたら、このコードでこの卵をそのまま育てられます</p>
       </div>
       <div className="result-actions">
         <a
-          className="primary big"
+          className="option"
           href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`}
           target="_blank"
           rel="noreferrer"
         >
-          Xでシェア
+          Xでシェア(公開の知らせは @icryodev から)
         </a>
         <button className="option" onClick={() => chosen && void downloadEggPng(chosen)}>
           卵の画像を保存
         </button>
-        <a className="option" href="https://github.com/icryodev/ai-monster-egg" target="_blank" rel="noreferrer">
-          この卵を育てる — macOS版(近日公開)
-        </a>
         <button className="ghost" onClick={restart}>
           もう一度診断する
         </button>

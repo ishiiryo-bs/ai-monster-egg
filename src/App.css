@@ -153,6 +153,111 @@ a.option {
   }
 }
 
+/* 胎動: 5秒周期の終わりに一度だけ、底を支点に左右へ「がたっ」と揺れる
+   (ポケモンの孵化前の卵の揺れ方 — 社長指定 2026-07-18)。
+   揺れの直後に .egg-glow(内側の色)が殻ごしに透けて消える — 揺れ→光の因果で
+   「中の何かが動いている」を作る。輪郭は描かない */
+.egg-alive {
+  position: relative;
+  display: inline-block;
+}
+
+.egg-alive svg {
+  position: relative;
+  z-index: 1;
+  transform-origin: 50% 100%;
+  animation: egg-wobble 5s ease-in-out infinite;
+}
+
+/* 時系列(5秒周期): 3.5秒まで静止 → 3.6〜4.0秒がたがたっ、同時に光が灯る
+   → 4.05秒に揺れが収まり → 光だけ余韻を引いて4.5秒までに消える(社長指定 2026-07-18:
+   光は揺れの「瞬間」に出す。動いた瞬間に中の光が漏れる、が生き物らしい) */
+@keyframes egg-wobble {
+  0%,
+  70%,
+  81%,
+  100% {
+    transform: rotate(0deg);
+  }
+  72% {
+    transform: rotate(-7deg);
+  }
+  74.5% {
+    transform: rotate(6deg);
+  }
+  77% {
+    transform: rotate(-4deg);
+  }
+  79% {
+    transform: rotate(2deg);
+  }
+}
+
+.egg-glow {
+  position: absolute;
+  inset: 6% -4% -2%;
+  border-radius: 50%;
+  filter: blur(16px);
+  opacity: 0;
+  animation: innerglow 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes innerglow {
+  0%,
+  69% {
+    opacity: 0;
+  }
+  73% {
+    opacity: 0.5;
+  }
+  81% {
+    opacity: 0.45;
+  }
+  90%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 脈に同期して3周期に一度だけ現れる(15秒周期、2周期目の脈の直後) */
+.stir-note {
+  color: #b09bdd;
+  font-size: 13px;
+  min-height: 1.4em;
+  opacity: 0;
+  animation: stir 15s linear infinite;
+}
+
+/* 2周期目の揺れ(15秒中の8.5〜9.05秒=57〜60%)と光の立ち上がりの直後に現れる */
+@keyframes stir {
+  0%,
+  60% {
+    opacity: 0;
+  }
+  63%,
+  73% {
+    opacity: 1;
+  }
+  79%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result-egg,
+  .egg-alive svg,
+  .egg-glow,
+  .stir-note {
+    animation: none;
+  }
+
+  .stir-note {
+    opacity: 1;
+  }
+}
+
 svg {
   image-rendering: pixelated;
 }

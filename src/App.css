@@ -4,18 +4,19 @@
 }
 
 :root {
-  font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
   color-scheme: dark;
 }
 
 body {
   min-height: 100vh;
-  color: #efe6ff;
+  color: #f2e7c4;
   background:
-    radial-gradient(circle at 20% 15%, rgba(122, 114, 176, 0.25) 1px, transparent 2px),
-    radial-gradient(circle at 75% 35%, rgba(255, 214, 102, 0.35) 1.4px, transparent 2.4px),
-    radial-gradient(circle at 45% 70%, rgba(122, 114, 176, 0.2) 1px, transparent 2px),
-    linear-gradient(180deg, #2c245a 0%, #1a1538 55%, #100d22 100%);
+    radial-gradient(circle, rgba(242, 231, 196, 0.22) 1px, transparent 1px),
+    radial-gradient(circle, rgba(227, 180, 85, 0.18) 1px, transparent 1px),
+    #080d1b;
+  background-position: 0 0, 24px 16px;
+  background-size: 48px 48px, 80px 80px;
   background-attachment: fixed;
 }
 
@@ -28,84 +29,125 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   text-align: center;
 }
 
+h1,
+.progress,
+.code-value {
+  font-family: "DotGothic16", monospace;
+  font-weight: 400;
+}
+
 h1 {
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1.5;
+  font-size: clamp(26px, 7vw, 30px);
+  line-height: 1.45;
+  letter-spacing: 0.06em;
 }
 
 .sub {
-  color: #b09bdd;
+  color: #9aa6b8;
   font-size: 14px;
   line-height: 1.8;
 }
 
 .progress {
-  color: #b09bdd;
-  font-size: 12px;
+  color: #74bfa3;
+  font-size: 13px;
+  letter-spacing: 0.08em;
 }
 
 button,
 a.primary,
 a.option {
   font: inherit;
-  border: none;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
 }
 
+.primary,
+.option,
+.egg-btn {
+  border: 2px solid #56627a;
+  border-radius: 3px;
+  background: #111a2e;
+  box-shadow:
+    inset 0 0 0 2px #19243d,
+    4px 4px 0 #03060d;
+  transition: none;
+}
+
 .primary {
-  background: #ffd666;
-  color: #100d22;
-  font-weight: 700;
-  border-radius: 12px;
+  color: #e3b455;
+  border-color: #e3b455;
   padding: 12px 20px;
   font-size: 14px;
 }
 
 .primary.big {
-  padding: 15px 32px;
+  padding: 14px 30px;
   font-size: 16px;
-  box-shadow: 0 6px 20px rgba(255, 214, 102, 0.25);
 }
 
-.primary:active {
-  transform: scale(0.97);
+.primary:hover {
+  color: #f2e7c4;
+  border-color: #f2e7c4;
+  background: #19243d;
+}
+
+.primary:active,
+.option:active,
+.egg-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow:
+    inset 0 0 0 2px #19243d,
+    1px 1px 0 #03060d;
 }
 
 .options,
 .result-actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
 .option {
-  background: rgba(255, 255, 255, 0.06);
-  color: #efe6ff;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 12px;
-  padding: 14px;
+  color: #f2e7c4;
+  padding: 14px 16px;
   font-size: 14px;
-  transition: border-color 0.15s ease, transform 0.15s ease;
+  text-align: left;
 }
 
 .option:hover {
-  border-color: #ffd666;
-  transform: translateY(-1px);
+  color: #e3b455;
+  border-color: #e3b455;
+  background: #19243d;
+}
+
+.quiz-page .options {
+  counter-reset: option;
+}
+
+.quiz-page .option::before {
+  content: counter(option, decimal-leading-zero) " / ";
+  counter-increment: option;
+  color: #74bfa3;
+  font-family: "DotGothic16", monospace;
+  margin-right: 8px;
 }
 
 .ghost {
+  border: 0;
   background: transparent;
-  color: #b09bdd;
+  color: #9aa6b8;
   font-size: 13px;
   padding: 8px;
+}
+
+.ghost:hover {
+  color: #f2e7c4;
 }
 
 .demo-eggs {
@@ -120,27 +162,24 @@ a.option {
 
 .egg-row {
   display: flex;
-  gap: 18px;
+  gap: 8px;
   justify-content: center;
-  padding: 12px 0;
+  padding: 0;
 }
 
 .egg-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  padding: 20px 14px;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+  background: #080d1b;
+  padding: 16px 6px;
 }
 
 .egg-btn:hover {
-  transform: translateY(-6px);
-  border-color: #ffd666;
+  border-color: #74bfa3;
+  background: #111a2e;
 }
 
 .result-egg {
-  padding: 10px 0;
-  animation: bob 3s ease-in-out infinite;
+  padding: 8px 0;
+  animation: bob 1.2s steps(2, jump-none) infinite;
 }
 
 @keyframes bob {
@@ -222,7 +261,7 @@ a.option {
 
 /* 脈に同期して3周期に一度だけ現れる(15秒周期、2周期目の脈の直後) */
 .stir-note {
-  color: #b09bdd;
+  color: #9aa6b8;
   font-size: 13px;
   min-height: 1.4em;
   opacity: 0;
@@ -264,9 +303,9 @@ svg {
 
 .code-box {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px dashed rgba(255, 214, 102, 0.45);
-  border-radius: 14px;
+  background: #111a2e;
+  border: 2px dashed #56627a;
+  border-radius: 3px;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -275,16 +314,14 @@ svg {
 }
 
 .code-label {
-  color: #b09bdd;
+  color: #9aa6b8;
   font-size: 12px;
 }
 
 .code-value {
-  font-family: ui-monospace, 'SF Mono', monospace;
   font-size: 20px;
-  font-weight: 700;
   letter-spacing: 2px;
-  color: #ffd666;
+  color: #e3b455;
   user-select: all;
 }
 
@@ -294,7 +331,77 @@ svg {
 }
 
 .code-note {
-  color: #b09bdd;
+  color: #9aa6b8;
   font-size: 11px;
   line-height: 1.6;
+}
+
+.landing-page .demo-eggs {
+  margin-bottom: 32px;
+}
+
+.landing-page h1,
+.eggs-page h1 {
+  margin-bottom: 8px;
+}
+
+.landing-page .sub {
+  margin-bottom: 24px;
+}
+
+.quiz-page {
+  align-items: stretch;
+  text-align: left;
+}
+
+.quiz-page .progress {
+  margin-bottom: 8px;
+}
+
+.quiz-page h1 {
+  margin-bottom: 24px;
+}
+
+.eggs-page .sub {
+  margin-bottom: 32px;
+}
+
+.result-page > .sub:first-child {
+  margin-bottom: 8px;
+}
+
+.result-page h1 {
+  margin-bottom: 24px;
+}
+
+.result-page .result-egg {
+  margin-bottom: 8px;
+}
+
+.result-page .stir-note {
+  margin-bottom: 24px;
+}
+
+.result-page > .sub:not(:first-child) {
+  margin-bottom: 24px;
+}
+
+.result-page > .result-actions,
+.result-page > .code-box {
+  margin-bottom: 40px;
+}
+
+.result-page > .result-actions:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 400px) {
+  .page {
+    padding-inline: 16px;
+  }
+
+  .egg-row {
+    gap: 4px;
+    transform: scale(0.88);
+  }
 }

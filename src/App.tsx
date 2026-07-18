@@ -147,7 +147,7 @@ export default function App() {
 
   if (step === 'landing') {
     return (
-      <main className="page">
+      <main className="page landing-page">
         <div className="demo-eggs">
           {demoEggs.map((g) => (
             <EggSprite key={g.seed} genome={g} cell={7} />
@@ -171,7 +171,7 @@ export default function App() {
   if (step === 'quiz') {
     const q = QUESTIONS[qIndex];
     return (
-      <main className="page">
+      <main className="page quiz-page">
         <p className="progress">
           {qIndex + 1} / {QUESTIONS.length}
         </p>
@@ -197,7 +197,7 @@ export default function App() {
 
   if (step === 'eggs') {
     return (
-      <main className="page">
+      <main className="page eggs-page">
         <h1>3つの卵が生まれた</h1>
         <p className="sub">柄も色も世界にひとつ。選ばなかった卵は消えます</p>
         <div className="egg-row">
@@ -235,7 +235,7 @@ export default function App() {
   };
 
   return (
-    <main className="page">
+    <main className="page result-page">
       <p className="sub">あなたは</p>
       <h1>{typeLabel}</h1>
       {/* 胎動: 数秒に一度、底を支点に左右へがたっと揺れ、直後に殻ごしに内側の色が透ける。

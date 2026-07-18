@@ -219,7 +219,7 @@ export default function App() {
 
   const typeLabel = typeLabelOf(answers as QuizAnswers);
   const shareText = `私のAI活用タイプは【${typeLabel}】。世界に一つの卵が生まれた🥚 #AIMonster`;
-  const shareUrl = 'https://ishiiryo-bs.github.io/ai-monster-egg/';
+  const shareUrl = 'https://icryodev.github.io/ai-monster-egg/';
   const eggCode = chosen ? encodeEggCode(answers as QuizAnswers, chosen.seed) : '';
 
   const copyCode = async () => {
@@ -258,7 +258,7 @@ export default function App() {
         <button className="option" onClick={() => chosen && void downloadEggPng(chosen)}>
           卵の画像を保存
         </button>
-        <a className="option" href="https://github.com/ishiiryo-bs/ai-monster-egg" target="_blank" rel="noreferrer">
+        <a className="option" href="https://github.com/icryodev/ai-monster-egg" target="_blank" rel="noreferrer">
           この卵を育てる — macOS版(近日公開)
         </a>
         <button className="ghost" onClick={restart}>

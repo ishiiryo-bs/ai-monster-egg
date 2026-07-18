@@ -150,6 +150,10 @@ a.option {
   color: #f2e7c4;
 }
 
+.ghost.back {
+  margin-top: 8px;
+}
+
 .demo-eggs {
   display: flex;
   gap: 18px;

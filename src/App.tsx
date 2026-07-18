@@ -170,6 +170,10 @@ export default function App() {
 
   if (step === 'quiz') {
     const q = QUESTIONS[qIndex];
+    const back = () => {
+      if (qIndex === 0) setStep('landing');
+      else setQIndex(qIndex - 1);
+    };
     return (
       <main className="page quiz-page">
         <p className="progress">
@@ -191,6 +195,9 @@ export default function App() {
             </button>
           ))}
         </div>
+        <button className="ghost back" onClick={back}>
+          ← 戻る
+        </button>
       </main>
     );
   }
@@ -214,6 +221,15 @@ export default function App() {
             </button>
           ))}
         </div>
+        <button
+          className="ghost back"
+          onClick={() => {
+            setQIndex(QUESTIONS.length - 1);
+            setStep('quiz');
+          }}
+        >
+          ← 戻る
+        </button>
       </main>
     );
   }

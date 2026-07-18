@@ -183,7 +183,7 @@ a.option {
 
 .result-egg {
   padding: 8px 0;
-  animation: bob 1.2s steps(2, jump-none) infinite;
+  animation: bob 2.4s steps(2, jump-none) infinite;
 }
 
 @keyframes bob {
@@ -212,26 +212,27 @@ a.option {
   animation: egg-wobble 5s ease-in-out infinite;
 }
 
-/* 時系列(5秒周期): 3.5秒まで静止 → 3.6〜4.0秒がたがたっ、同時に光が灯る
-   → 4.05秒に揺れが収まり → 光だけ余韻を引いて4.5秒までに消える(社長指定 2026-07-18:
-   光は揺れの「瞬間」に出す。動いた瞬間に中の光が漏れる、が生き物らしい) */
+/* 時系列(5秒周期): 3.3秒まで静止 → 3.3〜4.4秒ゆっくりがたがた、同時に光が灯る
+   → 4.4秒に揺れが収まり → 光だけ余韻を引いて4.7秒までに消える(社長指定 2026-07-18:
+   光は揺れの「瞬間」に出す。動いた瞬間に中の光が漏れる、が生き物らしい。
+   同日「動作もゆっくり」指定で揺れ幅0.55秒→1.1秒に伸長・角度は維持) */
 @keyframes egg-wobble {
   0%,
-  70%,
-  81%,
+  66%,
+  88%,
   100% {
     transform: rotate(0deg);
   }
-  72% {
+  70% {
     transform: rotate(-7deg);
   }
-  74.5% {
+  75% {
     transform: rotate(6deg);
   }
-  77% {
+  80% {
     transform: rotate(-4deg);
   }
-  79% {
+  84% {
     transform: rotate(2deg);
   }
 }
@@ -248,16 +249,16 @@ a.option {
 
 @keyframes innerglow {
   0%,
-  69% {
+  65% {
     opacity: 0;
   }
-  73% {
+  71% {
     opacity: 0.5;
   }
-  81% {
+  84% {
     opacity: 0.45;
   }
-  90%,
+  94%,
   100% {
     opacity: 0;
   }
@@ -272,17 +273,17 @@ a.option {
   animation: stir 15s linear infinite;
 }
 
-/* 2周期目の揺れ(15秒中の8.5〜9.05秒=57〜60%)と光の立ち上がりの直後に現れる */
+/* 2周期目の揺れ(15秒中の8.3〜9.4秒=55〜63%)と光の余韻(〜9.7秒=65%)の直後に現れる */
 @keyframes stir {
   0%,
-  60% {
+  62% {
     opacity: 0;
   }
-  63%,
-  73% {
+  65%,
+  75% {
     opacity: 1;
   }
-  79%,
+  81%,
   100% {
     opacity: 0;
   }

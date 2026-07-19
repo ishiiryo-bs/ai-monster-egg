@@ -79,8 +79,11 @@ a.option {
 }
 
 .primary {
-  color: #e3b455;
+  color: #080d1b;
+  background: #e3b455;
   border-color: #e3b455;
+  box-shadow: 4px 4px 0 #03060d;
+  font-weight: 700;
   padding: 12px 20px;
   font-size: 14px;
 }
@@ -91,9 +94,9 @@ a.option {
 }
 
 .primary:hover {
-  color: #f2e7c4;
-  border-color: #f2e7c4;
-  background: #19243d;
+  color: #080d1b;
+  background: #f2cf7a;
+  border-color: #f2cf7a;
 }
 
 .primary:active,
@@ -103,6 +106,10 @@ a.option {
   box-shadow:
     inset 0 0 0 2px #19243d,
     1px 1px 0 #03060d;
+}
+
+.primary:active {
+  box-shadow: 1px 1px 0 #03060d;
 }
 
 .options,

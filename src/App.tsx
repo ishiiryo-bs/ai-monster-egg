@@ -90,13 +90,13 @@ async function downloadEggPng(genome: Genome) {
   canvas.height = 11 * cell + 200;
   const ctx = canvas.getContext('2d')!;
   const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  grad.addColorStop(0, '#2c245a');
-  grad.addColorStop(1, '#131028');
+  grad.addColorStop(0, '#111a2e');
+  grad.addColorStop(1, '#080d1b');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(img, 80, 70, 9 * cell, 11 * cell);
-  ctx.fillStyle = '#B09BDD';
+  ctx.fillStyle = '#e3b455';
   ctx.font = '16px sans-serif';
   ctx.textAlign = 'center';
   ctx.fillText('AI MONSTER', canvas.width / 2, canvas.height - 30);

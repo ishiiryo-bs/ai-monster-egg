@@ -37,6 +37,7 @@ const QUESTIONS: Array<{
       { value: 'cool', label: 'すずしい色(青・緑・紫)', swatches: ['hsl(180 55% 72%)', 'hsl(225 55% 72%)', 'hsl(270 55% 72%)'] },
       { value: 'pastel', label: 'やわらかいパステル', swatches: ['hsl(0 38% 82%)', 'hsl(120 38% 82%)', 'hsl(240 38% 82%)'] },
       { value: 'vivid', label: 'はっきりビビッド', swatches: ['hsl(0 80% 66%)', 'hsl(120 80% 66%)', 'hsl(240 80% 66%)'] },
+      { value: 'dusty', label: 'おしゃれなくすみカラー', swatches: ['hsl(19 26% 58%)', 'hsl(150 26% 58%)', 'hsl(270 26% 58%)'] },
     ],
   },
   {

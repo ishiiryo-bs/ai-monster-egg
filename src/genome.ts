@@ -1,7 +1,7 @@
 import type { StatKey } from './coreTypes';
 
 export interface QuizAnswers {
-  colorTone: 'warm' | 'cool' | 'pastel' | 'vivid';
+  colorTone: 'warm' | 'cool' | 'pastel' | 'vivid' | 'dusty';
   form: 'round' | 'sharp';
   workStyle: 'steady' | 'burst';
   aiUse: 'code' | 'writing' | 'learning' | 'starter';
@@ -56,6 +56,8 @@ const TONE_RANGES: Record<QuizAnswers['colorTone'], { hues: Array<[number, numbe
   cool: { hues: [[170, 280]], sat: 55, light: 72 },
   pastel: { hues: [[0, 360]], sat: 38, light: 82 },
   vivid: { hues: [[0, 360]], sat: 80, light: 66 },
+  // 2026年トレンドのくすみ系(Mocha Mousse #A47764=HSL19/26/52、Lospec Nyx8系が根拠)
+  dusty: { hues: [[0, 360]], sat: 26, light: 58 },
 };
 
 const CREATURE_EARS: Record<QuizAnswers['creature'], number> = {

@@ -137,6 +137,30 @@ a.option {
   counter-reset: option;
 }
 
+.quiz-page .option {
+  display: flex;
+  align-items: center;
+}
+
+.quiz-page .option::before {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.swatches {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: auto;
+  padding-left: 10px;
+  flex-shrink: 0;
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  box-shadow: inset 0 0 0 1px #03060d;
+}
+
 .quiz-page .option::before {
   content: counter(option, decimal-leading-zero) " / ";
   counter-increment: option;

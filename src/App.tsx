@@ -23,15 +23,20 @@ const STAT_LABELS: Record<string, string> = {
 
 type QuizKey = keyof QuizAnswers;
 
-const QUESTIONS: Array<{ key: QuizKey; text: string; options: Array<{ value: string; label: string }> }> = [
+const QUESTIONS: Array<{
+  key: QuizKey;
+  text: string;
+  options: Array<{ value: string; label: string; swatches?: string[] }>;
+}> = [
   {
     key: 'colorTone',
     text: 'ひかれる色合いは?',
+    // 見本色はgenome.tsのTONE_RANGES(HSL範囲)から代表3点を抜粋 — 範囲を変えたらここも合わせる
     options: [
-      { value: 'warm', label: 'あたたかい色(赤・ピンク・オレンジ)' },
-      { value: 'cool', label: 'すずしい色(青・緑・紫)' },
-      { value: 'pastel', label: 'やわらかいパステル' },
-      { value: 'vivid', label: 'はっきりビビッド' },
+      { value: 'warm', label: 'あたたかい色(赤・ピンク・オレンジ)', swatches: ['hsl(345 62% 74%)', 'hsl(15 62% 74%)', 'hsl(45 62% 74%)'] },
+      { value: 'cool', label: 'すずしい色(青・緑・紫)', swatches: ['hsl(180 55% 72%)', 'hsl(225 55% 72%)', 'hsl(270 55% 72%)'] },
+      { value: 'pastel', label: 'やわらかいパステル', swatches: ['hsl(0 38% 82%)', 'hsl(120 38% 82%)', 'hsl(240 38% 82%)'] },
+      { value: 'vivid', label: 'はっきりビビッド', swatches: ['hsl(0 80% 66%)', 'hsl(120 80% 66%)', 'hsl(240 80% 66%)'] },
     ],
   },
   {
@@ -192,6 +197,13 @@ export default function App() {
               }}
             >
               {opt.label}
+              {opt.swatches && (
+                <span className="swatches" aria-hidden="true">
+                  {opt.swatches.map((c) => (
+                    <span key={c} className="swatch" style={{ background: c }} />
+                  ))}
+                </span>
+              )}
             </button>
           ))}
         </div>
